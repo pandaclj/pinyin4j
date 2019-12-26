@@ -1,5 +1,8 @@
 package net.sourceforge.pinyin4j.multipinyin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +14,7 @@ import java.util.Hashtable;
  * E-Mail:yibo.liu@tqmall.com
  */
 public class Trie {
+    private static final Logger logger = LoggerFactory.getLogger(Trie.class);
 
     private Hashtable<String, Trie> values = new Hashtable<String, Trie>();//本节点包含的值
 
@@ -125,11 +129,11 @@ public class Trie {
     public void loadMultiPinyinExtend() throws IOException {
         String path = MultiPinyinConfig.multiPinyinPath;
         if (path != null) {
-            try {
-                loadMultiPinyin(this.getClass().getResourceAsStream(path));
-            } catch (IOException e) {
-                //ignore
+            InputStream is = this.getClass().getResourceAsStream(path);
+            if (is == null) {
+                logger.warn("多音字扩展文件未找到");
             }
+            loadMultiPinyin(is);
         }
     }
 
