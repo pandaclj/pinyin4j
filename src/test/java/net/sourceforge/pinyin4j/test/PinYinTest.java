@@ -22,12 +22,15 @@ public class PinYinTest {
     defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
     defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
     System.out.println(PinyinHelper.toHanYuPinyinString("乐乐腌笃", defaultFormat, ",", true));
+    System.out.println(PinyinHelper.toHanYuPinyinString("乐乐腌笃鲜", defaultFormat, ",", true));
+    System.out.println(PinyinHelper.toHanYuPinyinString("腌笃鲜", defaultFormat, ",", true));
     System.out.println(PinyinHelper.toHanYuPinyinString("新增加料连锁", defaultFormat, ",", true));
   }
 
   @Test
   public void testHex() throws Exception {
-    System.out.printf(Integer.toHexString('鲜').toUpperCase());
+    System.out.println(Integer.toHexString('腌').toUpperCase());
+    System.out.println(Integer.toHexString('笃').toUpperCase());
   }
 
 }

@@ -272,14 +272,16 @@ public class PinyinHelper {
         currentTrie = currentTrie.get(hexStr);
         if (currentTrie != null) {
           if (currentTrie.getPinyin() != null) {
-            result = currentTrie.getPinyin();
-            success = current;
+              result = currentTrie.getPinyin();
+              if(currentTrie.getNextTire() != null && currentTrie.isEnd()){
+                  success = current;
+              }
           }
           currentTrie = currentTrie.getNextTire();
         }
         //fix bug:末两个字符之间的分隔符问题
-        if (currentTrie != null && currentTrie.getPinyin() != null) {
-          current++;
+        if (currentTrie != null) { //串起来
+          current++; //获取下一个
         }
         if (current < chars.length)
           ch = chars[current];
@@ -287,6 +289,7 @@ public class PinyinHelper {
           break;
       } while (currentTrie != null);
 
+      //中间的字符pinyin为null
       if (result == null) {//如果在前缀树中没有匹配到，那么它就不能转换为拼音，直接输出或者去掉
         if (retain) resultPinyinStrBuf.append(chars[i]);
       } else {
@@ -295,7 +298,7 @@ public class PinyinHelper {
           for (int j = 0; j < pinyinStrArray.length; j++) {
             resultPinyinStrBuf.append(PinyinFormatter.formatHanyuPinyin(pinyinStrArray[j],
                 outputFormat));
-            if (current < chars.length-1 || (j < pinyinStrArray.length - 1 && i != success)) {//不是最后一个,(也不是拼音的最后一个,并且不是最后匹配成功的)
+            if (current < chars.length-1 || success < chars.length-1  || (j < pinyinStrArray.length - 1 && i != success)) {//不是最后一个,(也不是拼音的最后一个,并且不是最后匹配成功的)
               resultPinyinStrBuf.append(separate);
             }
             if (i == success) break;

@@ -38,6 +38,8 @@ public class Trie {
         this.nextTire = nextTire;
     }
 
+    private boolean end;
+
     /**
      * 加载拼音
      *
@@ -81,7 +83,7 @@ public class Trie {
             String s;
             while ((s = bufferedReader.readLine()) != null) {
                 String[] keyAndValue = s.split(" ");
-                if (keyAndValue.length != 2) continue;
+                if (keyAndValue.length != 2) continue; //不符合要求
 
                 String key = keyAndValue[0];//多于一个字的字符串
                 String value = keyAndValue[1];//字符串的拼音
@@ -100,6 +102,7 @@ public class Trie {
 
                     if (keys.length - 1 == i) {//最后一个字了,需要把拼音写进去
                         trieParent.pinyin = value;
+                        trieParent.end = true;
                         break;//此行其实并没有意义
                     }
 
@@ -143,5 +146,9 @@ public class Trie {
 
     public void put(String s, Trie trie) {
         values.put(s, trie);
+    }
+
+    public boolean isEnd() {
+        return end;
     }
 }
