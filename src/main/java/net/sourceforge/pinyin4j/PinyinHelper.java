@@ -278,7 +278,7 @@ public class PinyinHelper {
           currentTrie = currentTrie.getNextTire();
         }
         //fix bug:末两个字符之间的分隔符问题
-        if (currentTrie != null) {
+        if (currentTrie != null && currentTrie.getPinyin() != null) {
           current++;
         }
         if (current < chars.length)
@@ -295,7 +295,7 @@ public class PinyinHelper {
           for (int j = 0; j < pinyinStrArray.length; j++) {
             resultPinyinStrBuf.append(PinyinFormatter.formatHanyuPinyin(pinyinStrArray[j],
                 outputFormat));
-            if (current < chars.length || (j < pinyinStrArray.length - 1 && i != success)) {//不是最后一个,(也不是拼音的最后一个,并且不是最后匹配成功的)
+            if (current < chars.length-1 || (j < pinyinStrArray.length - 1 && i != success)) {//不是最后一个,(也不是拼音的最后一个,并且不是最后匹配成功的)
               resultPinyinStrBuf.append(separate);
             }
             if (i == success) break;

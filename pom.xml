@@ -20,7 +20,7 @@
     <!--<version>2.5.1</version>-->
     <groupId>com.twodfire</groupId>
     <artifactId>pinyin4j</artifactId>
-    <version>2.5.3</version>
+    <version>2.5.4</version>
 
     <name>Chinese to Pinyin</name>
     <description>Support Chinese character (both Simplified and Tranditional) to most popular Pinyin systems, including

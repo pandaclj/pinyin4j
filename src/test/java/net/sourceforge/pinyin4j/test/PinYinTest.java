@@ -13,8 +13,7 @@ import org.junit.Test;
  */
 public class PinYinTest {
   static {
-    MultiPinyinConfig.multiPinyinPath =
-        PinYinTest.class.getResource("/multi_pinyin_ext.txt").getPath();
+    MultiPinyinConfig.multiPinyinPath = "/multi_pinyin_ext.txt";
   }
 
   @Test
@@ -22,11 +21,8 @@ public class PinYinTest {
     HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
     defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
     defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-    System.out.println(PinyinHelper.toHanYuPinyinString("腌笃鲜", defaultFormat, ",", true));
-    System.out.println(PinyinHelper.toHanYuPinyinString("河马鲜", defaultFormat, ",", true));
-    System.out.println(PinyinHelper.toHanYuPinyinString("你们好吗", defaultFormat, ",", true));
-    System.out.println(PinyinHelper.toHanYuPinyinString("啦啦", defaultFormat, ",", true));
-    System.out.println(PinyinHelper.toHanYuPinyinString("鲜", defaultFormat, ",", true));
+    System.out.println(PinyinHelper.toHanYuPinyinString("乐乐腌笃", defaultFormat, ",", true));
+    System.out.println(PinyinHelper.toHanYuPinyinString("新增加料连锁", defaultFormat, ",", true));
   }
 
   @Test
